@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SG - 数字媒体艺术设计师</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B6B',
+                        secondary: '#4ECDC4'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '2px',
+                        DEFAULT: '4px',
+                        'md': '8px',
+                        'lg': '12px',
+                        'xl': '16px',
+                        '2xl': '20px',
+                        '3xl': '24px',
+                        'full': '9999px',
+                        'button': '4px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            min-height: 1024px;
+        }
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            height: 600px;
+        }
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .carousel-slide.active {
+            opacity: 1;
+        }
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+        }
+        .carousel-dot.active {
+            background: white;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+        .modal-content {
+            position: relative;
+            max-width: 80%;
+            max-height: 80%;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100">
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-sm shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0">
+                    <span class="text-2xl font-['Pacifico'] text-primary">logo</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors">首页</a>
+                        <a href="#works" class="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors">作品</a>
+                        <a href="#contact" class="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors">联系方式</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="home" class="carousel-container">
+        <div class="carousel-slide active">
+            <img src="平时作业产品摄影图2.jpg" class="w-full h-full object-cover" alt="Banner 1">
+        </div>
+        <div class="carousel-slide">
+            <img src="微信图片_20240629010417.jpg" class="w-full h-full object-cover" alt="Banner 2">
+        </div>
+        <div class="carousel-slide">
+            <img src="https://ai-public.mastergo.com/ai/img_res/c7dd0c626e8e5ab978fa427ef1322ed4.jpg" class="w-full h-full object-cover" alt="Banner 3">
+        </div>
+        <div class="carousel-dots"></div>
+    </div>
+
+    <section id="works" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">精选作品</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="work-item group cursor-pointer">
+                <div class="relative overflow-hidden rounded-lg shadow-lg transition-transform duration-300 transform hover:scale-105">
+                    <img src="平时作业产品摄影图2.jpg" class="w-full h-[300px] object-cover" alt="极简美妆产品摄影">
+                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
+                        <h3 class="text-white font-semibold">极简美妆产品摄影</h3>
+                        <p class="text-white/80 text-sm">以松果与白花为背景，突出产品包装设计的静物摄影。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="work-item group cursor-pointer">
+                <div class="relative overflow-hidden rounded-lg shadow-lg transition-transform duration-300 transform hover:scale-105">
+                    <img src="微信图片_20240629010417.jpg" class="w-full h-[300px] object-cover" alt="现代展厅空间">
+                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
+                        <h3 class="text-white font-semibold">现代展厅空间</h3>
+                        <p class="text-white/80 text-sm">数字投影与传统文化元素结合的展览空间设计。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="work-item group cursor-pointer">
+                <div class="relative overflow-hidden rounded-lg shadow-lg transition-transform duration-300 transform hover:scale-105">
+                    <img src="首页.jpg" class="w-full h-[300px] object-cover" alt="作品 3">
+                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
+                        <h3 class="text-white font-semibold">古风数字界面设计</h3>
+                        <p class="text-white/80 text-sm">融合诗词、书法与古典元素的数字应用首页界面。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="work-item group cursor-pointer">
+                <div class="relative overflow-hidden rounded-lg shadow-lg transition-transform duration-300 transform hover:scale-105">
+                    <img src="线的练习.jpg" class="w-full h-[300px] object-cover" alt="作品 4">
+                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
+                        <h3 class="text-white font-semibold">线条构成练习</h3>
+                        <p class="text-white/80 text-sm">多种线条与几何图形组合的黑白抽象练习作品。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="work-item group cursor-pointer">
+                <div class="relative overflow-hidden rounded-lg shadow-lg transition-transform duration-300 transform hover:scale-105">
+                    <img src="hauhua.jpg" class="w-full h-[300px] object-cover" alt="作品 5">
+                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
+                        <h3 class="text-white font-semibold">复古蝴蝶图案设计</h3>
+                        <p class="text-white/80 text-sm">以蝴蝶为主题，采用复古配色与颗粒质感的图案创作。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="work-item group cursor-pointer">
+                <div class="relative overflow-hidden rounded-lg shadow-lg transition-transform duration-300 transform hover:scale-105">
+                    <img src="屏幕截图 2025-06-18 234408.png" class="w-full h-[300px] object-cover" alt="作品 6">
+                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
+                        <h3 class="text-white font-semibold">茶具图标与排版</h3>
+                        <p class="text-white/80 text-sm">黑白与绿色茶壶、茶碗图标的创意排版练习。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="bg-gradient-to-br from-gray-50 to-gray-100 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">联系我</h2>
+            <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-8">
+                <form class="space-y-6">
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">电子邮箱</label>
+                        <input type="email" id="email" name="email" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700">留言内容</label>
+                        <textarea id="message" name="message" rows="4" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"></textarea>
+                    </div>
+                    <button type="submit" class="w-full px-6 py-3 bg-primary text-white font-medium rounded-button hover:bg-primary/90 transition-colors">发送消息</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center space-y-6">
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                        <i class="fab fa-weibo text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                        <i class="fab fa-bilibili text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                        <i class="fab fa-tiktok text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                        <i class="fas fa-heart text-2xl"></i>
+                    </a>
+                </div>
+                <div class="text-gray-400 text-sm">
+                    © 2024 SG Studio. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img src="" alt="作品详情" class="w-full h-auto">
+            <h3 class="text-xl font-bold mt-4"></h3>
+            <p class="text-gray-600 mt-2"></p>
+        </div>
+    </div>
+
+    <script>
+        const carousel = {
+            currentSlide: 0,
+            slides: document.querySelectorAll('.carousel-slide'),
+            dotsContainer: document.querySelector('.carousel-dots'),
+            init() {
+                this.createDots();
+                this.startAutoSlide();
+            },
+            createDots() {
+                for (let i = 0; i < this.slides.length; i++) {
+                    const dot = document.createElement('div');
+                    dot.classList.add('carousel-dot');
+                    if (i === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => this.showSlide(i));
+                    this.dotsContainer.appendChild(dot);
+                }
+            },
+            showSlide(n) {
+                this.slides[this.currentSlide].classList.remove('active');
+                this.dotsContainer.children[this.currentSlide].classList.remove('active');
+                this.currentSlide = n;
+                this.slides[this.currentSlide].classList.add('active');
+                this.dotsContainer.children[this.currentSlide].classList.add('active');
+            },
+            nextSlide() {
+                const next = (this.currentSlide + 1) % this.slides.length;
+                this.showSlide(next);
+            },
+            startAutoSlide() {
+                setInterval(() => this.nextSlide(), 5000);
+            }
+        };
+
+        const modal = {
+            element: document.querySelector('.modal'),
+            img: document.querySelector('.modal-content img'),
+            title: document.querySelector('.modal-content h3'),
+            desc: document.querySelector('.modal-content p'),
+            init() {
+                document.querySelectorAll('.work-item').forEach(item => {
+                    item.addEventListener('click', () => this.open(item));
+                });
+                document.querySelector('.close-modal').addEventListener('click', () => this.close());
+                this.element.addEventListener('click', (e) => {
+                    if (e.target === this.element) this.close();
+                });
+            },
+            open(item) {
+                const img = item.querySelector('img');
+                const title = item.querySelector('h3');
+                const desc = item.querySelector('p');
+                this.img.src = img.src;
+                this.title.textContent = title.textContent;
+                this.desc.textContent = desc.textContent;
+                this.element.style.display = 'flex';
+            },
+            close() {
+                this.element.style.display = 'none';
+            }
+        };
+
+        carousel.init();
+        modal.init();
+    </script>
+</body>
+</html>
